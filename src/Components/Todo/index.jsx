@@ -74,7 +74,7 @@ const Todo = () => {
           <button type="submit">Add Item</button>
         </label>
       </form>
-      <List list={list} toggleComplete={toggleComplete}></List>
+      <List list={list} toggleComplete={toggleComplete} deleteItem={deleteItem}></List>
 
     </>
   );
