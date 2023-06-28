@@ -11,7 +11,9 @@ function SettingsProvider({ children }) {
 
   const values = {
     showCompleted,
-    displayItems
+    displayItems,
+    setShowCompleted,
+    setDisplayItems
   }
   return(
     <SettingsContext.Provider value={values}>
