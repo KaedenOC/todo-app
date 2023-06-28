@@ -1,10 +1,18 @@
-import React from "react";
+// import React from "react";
+import { createStyles } from '@mantine/core';
+
+const useStyles = createStyles((theme) => ({
+  footer: {
+    textAlign: 'right',
+    width: '80%',
+    margin: 'auto',
+  }
+}));
 
 function Footer() {
+  const { classes } = useStyles();
   return(
-    <>
-    <h2>2023 Kaeden O.</h2>
-    </>
+    <footer className={classes.footer}>2023 Kaeden O.</footer>
   )
 }
 
