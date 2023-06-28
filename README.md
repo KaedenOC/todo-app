@@ -12,9 +12,9 @@ In **Phase 1**, we’re going to perform some refactoring of a Todo application 
 
 ## Links and Resources
 
-- [GitHub Actions CI/CD]()
+- [GitHub Actions CI/CD](https://github.com/KaedenOC/todo-app/actions)
 
-- [Sandbox]()
+- [Sandbox](https://codesandbox.io/p/github/KaedenOC/todo-app/context-settings?workspaceId=6d0a53bd-a69d-4182-88d0-5418dc523e44)
 
 ## Features
 
