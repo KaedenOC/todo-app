@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 //create context
 export const SettingsContext = React.createContext();
@@ -10,13 +10,22 @@ function SettingsProvider({ children }) {
   const [displayItems, setDisplayItems] = useState(3);
   const [sort, setSort] = useState('difficulty');
 
-  const localStorage = () => {
-    localStorage.setItem('displayItems', JSON.stringify(+displayItems));
-    localStorage.setItem('showCompleted', JSON.stringify(showCompleted));
-    localStorage.setItem('sort', JSON.stringify(sort));
+  //function for local storage//todo string is the key
+  const storeLocal = () => {
+    localStorage.setItem('todo', JSON.stringify({displayItems, showCompleted, sort}));
   }
 
-  //context to be sent
+  //retrieve our local storage once on page load//life cycle hook
+  useEffect(() => {
+    let storage = JSON.parse(localStorage.getItem('todo'))
+    if(storage) {
+      setDisplayItems(storage.displayItems);
+      setShowCompleted(storage.showCompleted);
+      setSort(storage.sort);
+    }
+  }, []);
+
+  //context to be sent //settings form will also take this
   const values = {
     showCompleted,
     displayItems,
@@ -24,7 +33,7 @@ function SettingsProvider({ children }) {
     setShowCompleted,
     setDisplayItems,
     setSort,
-    localStorage
+    storeLocal
   }
   
   return(
