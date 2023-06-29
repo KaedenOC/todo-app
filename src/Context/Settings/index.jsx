@@ -16,7 +16,7 @@ function SettingsProvider({ children }) {
     localStorage.setItem('sort', JSON.stringify(sort));
   }
 
-  //context to be sent
+  //context to be sent //settings form will also take this
   const values = {
     showCompleted,
     displayItems,
