@@ -10,10 +10,9 @@ function SettingsProvider({ children }) {
   const [displayItems, setDisplayItems] = useState(3);
   const [sort, setSort] = useState('difficulty');
 
+  //function for local storage//todo string is the key
   const localStorage = () => {
-    localStorage.setItem('displayItems', JSON.stringify(+displayItems));
-    localStorage.setItem('showCompleted', JSON.stringify(showCompleted));
-    localStorage.setItem('sort', JSON.stringify(sort));
+    localStorage.setItem('todo', JSON.stringify({displayItems, showCompleted, sort}));
   }
 
   //context to be sent //settings form will also take this
