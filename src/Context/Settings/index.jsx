@@ -10,6 +10,12 @@ function SettingsProvider({ children }) {
   const [displayItems, setDisplayItems] = useState(3);
   const [sort, setSort] = useState('difficulty');
 
+  const localStorage = () => {
+    localStorage.setItem('displayItems', JSON.stringify(+displayItems));
+    localStorage.setItem('showCompleted', JSON.stringify(showCompleted));
+    localStorage.setItem('sort', JSON.stringify(sort));
+  }
+
   //context to be sent
   const values = {
     showCompleted,
@@ -17,7 +23,8 @@ function SettingsProvider({ children }) {
     sort,
     setShowCompleted,
     setDisplayItems,
-    setSort
+    setSort,
+    localStorage
   }
   
   return(
