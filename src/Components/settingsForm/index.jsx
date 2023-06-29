@@ -1,7 +1,8 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { SettingsContext } from "../../Context/Settings";
 import { createStyles, Grid, TextInput, Text, Switch, NumberInput, Button, Card } from '@mantine/core';
 import { IconSettings } from '@tabler/icons-react';
+import { When } from 'react-if';
 
 //bringing in our styles and using in our return
 const useStyles = createStyles((theme) => ({
@@ -17,9 +18,11 @@ const useStyles = createStyles((theme) => ({
   }
 }));
 
-
+//bringing in our context state
 function SettingsForm() {
   const { classes } = useStyles();
+  //creating show state for the settings
+  const [show, setShow] = useState(false)
   const {
     showCompleted,
     displayItems,
@@ -27,11 +30,14 @@ function SettingsForm() {
     setShowCompleted,
     setDisplayItems,
     setSort,
-    localStorage
+    storeLocal
   } = useContext(SettingsContext);
 
-  const handleSubmit = () => {
-
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    storeLocal();
+    setShow(true);
+    e.target.reset(); //resets form to default
   }
 
   return (
@@ -56,14 +62,16 @@ function SettingsForm() {
             label="Sort Keyword"
             onChange={(e) => setSort(e.target.value)}
           />
-          <Button>Show New Settings</Button>
+          <Button type='submit'>Show New Settings</Button>
         </form>
         </Grid.Col>
         <Grid.Col span={6}>
+          <When condition={show}>
           <Text fontSize="xl" weight="bold">Update Settings</Text>
           <Text>{showCompleted ? 'Show' : 'Hide'} Completed ToDos</Text>
           <Text>Items Per Page: {displayItems}</Text>
           <Text>Sort Keyowrd: {sort}</Text>
+          </When>
         </Grid.Col>
       </Grid>
     </>
