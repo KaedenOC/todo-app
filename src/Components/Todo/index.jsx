@@ -1,12 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import useForm from '../../hooks/form';
 import List from '../List/index';
-import { SimpleGrid, Container, Stack, Paper, Text, Input, Button, Slider, Title } from '@mantine/core';
+import { SimpleGrid, Container, Stack, Paper, Text, Input, Button, Slider, Title, Header, createStyles } from '@mantine/core';
 
 import { v4 as uuid } from 'uuid';
 
+const useStyles = createStyles((theme) => ({
+  header: {
+    backgroundColor: theme.colors.dark[4],
+    padding: theme.spacing.md,
+    color: theme.colors.gray[0],
+  }
+}));
 const Todo = () => {
 
+  const { classes } = useStyles();
   const [defaultValues] = useState({
     difficulty: 4,
   });
@@ -22,15 +30,15 @@ const Todo = () => {
   }
 
   function deleteItem(id) {
-    const items = list.filter( item => item.id !== id );
+    const items = list.filter(item => item.id !== id);
     setList(items);
   }
 
   function toggleComplete(id) {
 
-    const items = list.map( item => {
-      if ( item.id === id ) {
-        item.complete = ! item.complete;
+    const items = list.map(item => {
+      if (item.id === id) {
+        item.complete = !item.complete;
       }
       return item;
     });
@@ -46,12 +54,18 @@ const Todo = () => {
     // linter will want 'incomplete' added to dependency array unnecessarily. 
     // disable code used to avoid linter warning 
     // eslint-disable-next-line react-hooks/exhaustive-deps 
-  }, [list]);  
+  }, [list]);
 
   return (
     <>
 
-<Container>
+      <Container>
+        <header>
+        <Header className={classes.header}>
+          <Title order={4} data-testid="todo-h1">To Do List: {incomplete} items pending</Title>
+        </Header>
+
+        </header>
 
         {/* leave the form code inside of the Todo Component */}
         <SimpleGrid cols={2} spacing="sm" verticalSpacing="lg">

@@ -1,4 +1,4 @@
-import { createStyles, Header, Navbar, Text } from "@mantine/core";
+import { createStyles, Header, Navbar, Text, } from "@mantine/core";
 
 const useStyles = createStyles((theme) => ({
   navbar: {
