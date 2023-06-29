@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { SettingsContext } from '../../Context/Settings';
-import { Pagination } from '@mantine/core';
+import { Pagination, Container, Card, Group, Badge, Text, CloseButton } from '@mantine/core';
 
 function List({ list, toggleComplete, deleteItem }) {
   //utilizing the useContext hook//We use the useContext hook to access the SettingsContext and destructure the displayItems value from the context.
@@ -19,17 +19,31 @@ function List({ list, toggleComplete, deleteItem }) {
   const finalItems = filteredList.slice(listStart, listEnd);
   return (
     <>
-      {finalItems.map(item => (
-        <div key={item.id}>
-          <p>{item.text}</p>
-          <p><small>Assigned to: {item.assignee}</small></p>
-          <p><small>Difficulty: {item.difficulty}</small></p>
-          <div onClick={() => toggleComplete(item.id)}>Complete: {item.complete.toString()}</div>
-          <hr />
-        </div>
+      <Container px="sm" spacing={10}>
+        {finalItems.map(item => (
+          <Card key={item.id} padding="lg" radius="sm" withBorder shadow="lg">
+            <Card.Section withBorder px="xs">
+              <Group padding="sm">
+                <Badge color="green" variant="filled" onClick={() => toggleComplete(item.id)}>Pending</Badge>
+                <Text fz="md">{item.assignee}</Text>
+                <CloseButton title="Close popover" size="sm" />
+              </Group>
+            </Card.Section>
+            <Card.Section inheritPadding py="xs">
+              <Text fz="md" mt="xs">{item.text}</Text>
+              <Text align="right"><small>Difficulty: {item.difficulty}</small></Text>
+            </Card.Section>
+            {/* <div key={item.id}> */}
+            {/* <div onClick={() => toggleComplete(item.id)}>Complete: {item.complete.toString()}</div> */}
+            <hr />
+            {/* </div> */}
 
-      ))}
-      <Pagination value={activePage} onChange={setPage} total={pageCount} />
+          </Card>
+
+        ))}
+        <Pagination value={activePage} onChange={setPage} total={pageCount} />
+
+      </Container>
     </>
   )
 }

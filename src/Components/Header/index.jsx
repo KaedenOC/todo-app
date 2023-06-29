@@ -1,11 +1,24 @@
-import React from "react";
+import { createStyles, Header, Navbar, Text, } from "@mantine/core";
 
-function Header(props) {
-  return (
-    <header data-testid="todo-header">
-      <h1 data-testid="todo-h1">To Do List: {props.incomplete} items pending</h1>
-    </header>
-  )
+const useStyles = createStyles((theme) => ({
+  navbar: {
+    backgroundColor: theme.colors.blue[7],
+    height: '100%',
+    color: theme.colors.gray[0],
+    fontSize: theme.fontSizes.md,
+    padding: theme.spacing.md,
+  }
+}));
+
+function HeaderComponent(){
+    const { classes } = useStyles();
+    return(
+        <Header data-testid="header">
+            <Navbar className={classes.navbar} >
+               <Text>HOME</Text>
+            </Navbar>
+        </Header>
+    )
 }
 
-export default Header;
+export default HeaderComponent;
