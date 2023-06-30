@@ -26,7 +26,7 @@ function AuthProvider({ children }) {
       setError(error);
       console.log(error);
     }
-  }
+  };
 
   const login = (username, password) => {
     //grab username from testUsers object//variable coming in as a property we can use bracket notation//grabs specific username object
@@ -41,13 +41,17 @@ function AuthProvider({ children }) {
         console.log(error);
       }
     }
-  }
+  };
 
   const logout = () => {
     //set our state back to the default state when logged out
     setUser({});
     setIsLoggedIn(false);
-  }
+  };
+
+  const can = (capability) => {
+    return user?.capability?.includes(capability);
+  };
   
   const values = {
     isLoggedIn,
@@ -55,13 +59,14 @@ function AuthProvider({ children }) {
     error,
     login,
     logout,
-  }
+    can,
+  };
 
   return(
     <AuthContext.Provider value={values}>
       {children}
     </AuthContext.Provider>
   )
-}
+};
 
 export default AuthProvider;
