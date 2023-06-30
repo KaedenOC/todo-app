@@ -1,4 +1,4 @@
-import { Autocomplete, createStyles, Header, Navbar, Text, } from "@mantine/core";
+import { createStyles, Header, Navbar, } from "@mantine/core";
 import { Link } from "react-router-dom";
 
 const useStyles = createStyles((theme) => ({
