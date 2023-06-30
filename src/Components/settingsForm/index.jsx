@@ -45,6 +45,7 @@ function SettingsForm() {
       <h1 className={classes.h1}><IconSettings />Manage Settings</h1>
       <Grid style={{ width: '80%', margin: 'auto' }}>
         <Grid.Col span={6}>
+          <Card withBorder>
         <form onSubmit={handleSubmit}>
           <Text fontSize="xl" weight="bold">Update Settings</Text>
           <Switch
@@ -64,6 +65,7 @@ function SettingsForm() {
           />
           <Button type='submit'>Show New Settings</Button>
         </form>
+          </Card>
         </Grid.Col>
         <Grid.Col span={6}>
           <When condition={show}>

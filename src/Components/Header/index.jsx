@@ -1,4 +1,5 @@
-import { createStyles, Header, Navbar, } from "@mantine/core";
+import { createStyles, Header, Navbar, Group } from "@mantine/core";
+import Login from "../Login";
 
 const useStyles = createStyles((theme) => ({
   navbar: {
@@ -11,6 +12,8 @@ const useStyles = createStyles((theme) => ({
     // justifyContent: 'space-between',
     a: {
       justifyContent: 'space-around',
+      textDecoration: 'none',
+      color: 'white',
     }
   }
 }));
@@ -21,12 +24,17 @@ function HeaderComponent() {
   return (
     <Header data-testid="header">
       <Navbar className={classes.navbar} >
-        <a className={classes.a} href='/' default>
-          Home
-        </a>
-        <a className={classes.a} href='/settings'>
-          Settings
-        </a>
+        <Group>
+          <a className={classes.a} href='/' default>
+            Home
+          </a>
+          <a className={classes.a} href='/settings'>
+            Settings
+          </a>
+        </Group>
+        <Group>
+          <Login />
+        </Group>
       </Navbar>
     </Header>
   )
