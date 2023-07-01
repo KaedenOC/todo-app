@@ -61,7 +61,7 @@ function AuthProvider({ children }) {
   };
 
   const can = (capability) => {
-    return user?.capability?.includes(capability);
+    return user?.capabilities?.includes(capability);
   };
   
   const values = {

@@ -11,10 +11,12 @@ function App() {
     <>
       <BrowserRouter>
         <Header />
+        <Auth capability='read'>
           <Routes>
             <Route path="/" element={<Todo />} />
             <Route path="/settings" element={<SettingsForm />} />
           </Routes>
+        </Auth>
         <Footer />
       </BrowserRouter>
     </>

@@ -72,6 +72,7 @@ const Todo = () => {
         <SimpleGrid cols={2} spacing="sm" verticalSpacing="lg">
           <div>
             <Paper padding="lg" radius="sm" withBorder p="md">
+              <Auth capability='create'>
                 <form onSubmit={handleSubmit}>
                   <Stack >
                     <Title order={3}>Add To Do Item</Title>
@@ -96,6 +97,7 @@ const Todo = () => {
                     </label>
                   </Stack>
                 </form>
+              </Auth>
             </Paper>
           </div>
           <div>
