@@ -32,7 +32,7 @@ function HeaderComponent() {
             Settings
           </a>
         </Group>
-        <Group>
+        <Group position='right'>
           <Login />
         </Group>
       </Navbar>

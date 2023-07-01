@@ -4,6 +4,7 @@ import List from '../List/index';
 import { SimpleGrid, Container, Stack, Paper, Text, Input, Button, Slider, Title, Header, createStyles } from '@mantine/core';
 
 import { v4 as uuid } from 'uuid';
+import Auth from '../Auth';
 
 const useStyles = createStyles((theme) => ({
   header: {
@@ -61,9 +62,9 @@ const Todo = () => {
 
       <Container>
         <header>
-        <Header className={classes.header}>
-          <Title order={4} data-testid="todo-h1">To Do List: {incomplete} items pending</Title>
-        </Header>
+          <Header className={classes.header}>
+            <Title order={4} data-testid="todo-h1">To Do List: {incomplete} items pending</Title>
+          </Header>
 
         </header>
 
@@ -71,31 +72,32 @@ const Todo = () => {
         <SimpleGrid cols={2} spacing="sm" verticalSpacing="lg">
           <div>
             <Paper padding="lg" radius="sm" withBorder p="md">
+              <Auth capability='create'>
+                <form onSubmit={handleSubmit}>
+                  <Stack >
+                    <Title order={3}>Add To Do Item</Title>
 
-              <form onSubmit={handleSubmit}>
-                <Stack >
-                  <Title order={3}>Add To Do Item</Title>
+                    <label>
+                      <Text fz="sm" fw={500}>To Do Item</Text>
+                      <Input size="sm" onChange={handleChange} name="text" type="text" placeholder="Item Details" />
+                    </label>
 
-                  <label>
-                    <Text fz="sm" fw={500}>To Do Item</Text>
-                    <Input size="sm" onChange={handleChange} name="text" type="text" placeholder="Item Details" />
-                  </label>
+                    <label>
+                      <Text fz="sm" fw={500}>Assigned To</Text>
+                      <Input size="sm" onChange={handleChange} name="assignee" type="text" placeholder="Assignee Name" />
+                    </label>
 
-                  <label>
-                    <Text fz="sm" fw={500}>Assigned To</Text>
-                    <Input size="sm" onChange={handleChange} name="assignee" type="text" placeholder="Assignee Name" />
-                  </label>
+                    <label>
+                      <Text fz="md">Difficulty</Text>
+                      <Slider onChange={handleChange} defaultValue={defaultValues.difficulty} type="range" min={1} max={5} name="difficulty" />
+                    </label>
 
-                  <label>
-                    <Text fz="md">Difficulty</Text>
-                    <Slider onChange={handleChange} defaultValue={defaultValues.difficulty} type="range" min={1} max={5} name="difficulty" />
-                  </label>
-
-                  <label>
-                    <Button size="sm" type="submit">Add Item</Button>
-                  </label>
-                </Stack>
-              </form>
+                    <label>
+                      <Button size="sm" type="submit">Add Item</Button>
+                    </label>
+                  </Stack>
+                </form>
+              </Auth>
             </Paper>
           </div>
           <div>

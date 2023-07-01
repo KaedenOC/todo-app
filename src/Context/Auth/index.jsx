@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import testUsers from './lib/users';
 import jwt_decode from 'jwt-decode';
 import cookie from 'react-cookies'
@@ -11,16 +11,21 @@ function AuthProvider({ children }) {
   const [user, setUser] = useState({});
   const [error, setError] = useState(null);
 
-  // TODO useEffect for cookie
+  // useEffect for cookie
+  useEffect(() => {
+    let cookieToken = cookie.load('auth');
+    _validateToken(cookieToken);
+  }, [])
 
   //jwt decode//helper function taking in token
   const _validateToken = (token) => {
     try {
-
+      
       //if token is valid, then we HAVE a user assigned to the validUser variable
       let validUser = jwt_decode(token);
       console.log(validUser);
       if(validUser){
+        console.log(validUser);
         //save cookie
         cookie.save('auth', token);
         setUser(validUser);
@@ -52,10 +57,11 @@ function AuthProvider({ children }) {
     //set our state back to the default state when logged out
     setUser({});
     setIsLoggedIn(false);
+    cookie.remove('auth'); //remove cookie on logout
   };
 
   const can = (capability) => {
-    return user?.capability?.includes(capability);
+    return user?.capabilities?.includes(capability);
   };
   
   const values = {
