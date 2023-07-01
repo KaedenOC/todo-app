@@ -28,7 +28,7 @@ function Login() {
           />
           <TextInput 
           placeholder='Password'
-          type='passwprd'
+          type='password'
           onChange={(e) => setPassword(e.target.value)}
           />
           <Button color='gray' onClick={() => login(username, password)}>Log In</Button>
